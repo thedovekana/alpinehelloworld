@@ -100,7 +100,7 @@ pipeline {
       steps {
           script {
             sh '''
-              docker exec -it jenkins-jenkins-1 bash -c "DOCKER_CONTEXT=prod-docker docker ps -a"
+             DOCKER_CONTEXT=prod-docker docker run --name $IMAGE_NAME -d -p ${PORT_EXPOSED}:5000 -e PORT=5000 ${ID_DOCKER}/$IMAGE_NAME:$IMAGE_TAG
             '''
           }
         }
