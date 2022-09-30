@@ -100,10 +100,7 @@ pipeline {
       steps {
           script {
             sh '''
-              heroku container:login
-              heroku create $PRODUCTION || echo "project already exist"
-              heroku container:push -a $PRODUCTION web
-              heroku container:release -a $PRODUCTION web
+              docker exec -it jenkins-jenkins-1 bash -c "DOCKER_CONTEXT=prod-docker docker ps -a"
             '''
           }
         }
